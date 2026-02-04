@@ -25,8 +25,8 @@ const translations = {
     // Hero
     "hero.available": "Available for work",
     "hero.title": "Systems Engineer",
-    "hero.location": "Your City, Country",
-    "hero.description": "I design, build, and maintain robust infrastructure systems that power modern applications. Specializing in cloud architecture, automation, and DevOps practices.",
+    "hero.location": "Quetzaltenango, Guatemala",
+    "hero.description": "I'm passionate about creating complete digital products, from the interface to the server logic. I work with React, Next.js, and Tailwind CSS on the frontend, and FastAPI and Node.js on the backend to build modern and scalable applications.",
     "hero.contact": "Contact Me",
     "hero.downloadCV": "Download CV",
     
@@ -91,8 +91,8 @@ const translations = {
     // Hero
     "hero.available": "Disponible para trabajar",
     "hero.title": "Ingeniero de Sistemas",
-    "hero.location": "Tu Ciudad, Pais",
-    "hero.description": "Diseno, construyo y mantengo sistemas de infraestructura robustos que impulsan aplicaciones modernas. Especializado en arquitectura cloud, automatizacion y practicas DevOps.",
+    "hero.location": "Quetzaltenango, Guatemala",
+    "hero.description": "Me apasiona crear productos digitales completos, desde la interfaz hasta la lógica del servidor. Trabajo con React, Next.js, TailwindCSS en frontend, y FastAPI y Node.js en backend para construir aplicaciones modernas y escalables.",
     "hero.contact": "Contactame",
     "hero.downloadCV": "Descargar CV",
     
