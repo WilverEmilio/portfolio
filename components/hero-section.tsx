@@ -15,7 +15,7 @@ export function HeroSection() {
         <div className="mb-8 relative">
           <div className="w-44 h-44 mx-auto rounded-full overflow-hidden ring-4 ring-primary/20 ring-offset-4 ring-offset-background">
             <Image
-              src="/photo.jpg"
+              src="/photo.png"
               alt="Profile photo"
               width={176}
               height={176}
