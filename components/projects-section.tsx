@@ -46,14 +46,14 @@ export function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="py-24 px-6 bg-[#001219]">
+    <section id="projects" className="py-24 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         {/* Título de la sección */}
         <div className="text-center mb-14">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-[#5eead4] mb-4">
+          <h2 className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
             {t("projects.title")}
           </h2>
-          <p className="text-[#94a3b8] max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Proyectos destacados que demuestran mis habilidades en desarrollo full stack
           </p>
         </div>
@@ -87,12 +87,12 @@ function ProjectCard({
   liveUrl?: string;
 }) {
   return (
-    <div className="group relative rounded-2xl bg-[#0a1929] border border-[#14b8a6]/20 hover:border-[#14b8a6]/50 transition-all duration-300 overflow-hidden hover:shadow-[0_0_30px_rgba(20,184,166,0.3)] hover:-translate-y-2">
+    <div className="group relative rounded-2xl bg-card border-2 border-foreground/15 dark:border-border shadow-md dark:shadow-none hover:border-primary/50 hover:shadow-2xl hover:shadow-[0_0_30px_rgba(20,184,166,0.4)] dark:hover:shadow-[0_0_30px_rgba(20,184,166,0.6)] transition-all duration-300 overflow-hidden hover:-translate-y-2">
       
       {/* Badge superior */}
       {badge && (
         <div className="absolute top-4 left-4 z-10">
-          <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#14b8a6] text-[#001219] shadow-lg">
+          <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-primary text-primary-foreground shadow-lg">
             {badge}
           </span>
         </div>
@@ -106,18 +106,18 @@ function ProjectCard({
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1929] via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
       </div>
 
       {/* Contenido */}
       <div className="p-6">
         {/* Título */}
-        <h3 className="text-xl font-bold text-[#f0fdfa] mb-3 group-hover:text-[#5eead4] transition-colors">
+        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
           {title}
         </h3>
 
         {/* Descripción */}
-        <p className="text-[#94a3b8] text-sm leading-relaxed mb-4 line-clamp-3">
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
           {description}
         </p>
 
@@ -126,7 +126,7 @@ function ProjectCard({
           {skills.map((skill) => (
             <span
               key={skill}
-              className="text-xs font-medium px-3 py-1 rounded-full bg-[#14b8a6]/10 text-[#14b8a6] border border-[#14b8a6]/30"
+              className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30"
             >
               {skill}
             </span>
@@ -140,7 +140,7 @@ function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#001219] border border-[#14b8a6]/30 text-[#14b8a6] hover:bg-[#14b8a6] hover:text-white transition-all text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all text-sm font-medium"
             >
               <Github className="w-4 h-4" />
               Código
@@ -151,7 +151,7 @@ function ProjectCard({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#14b8a6] text-white hover:bg-[#0d9488] transition-all text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all text-sm font-medium"
             >
               <ExternalLink className="w-4 h-4" />
               Ver Demo

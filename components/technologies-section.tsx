@@ -44,11 +44,11 @@ export function TechnologiesSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="technologies" className="py-24 px-6">
+    <section id="technologies" className="py-24 px-6 bg-background">
       {/* Para el titulo y la descripción */}
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-sm font-medium uppercase tracking-widest text-primary mb-4">
+          <h2 className="text-sm font-medium uppercase tracking-widest text-accent mb-4">
             {t("tech.title")}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -60,14 +60,15 @@ export function TechnologiesSection() {
           {technologies.map((tech, index) => (
             <Card
               key={index}
-              className="group bg-[#0a1929] rounded-3xl hover:bg-[#001219] hover:shadow-2xl hover:shadow-[#14b8a6] transition-shadow duration-300"
+              className="group bg-card border-2 border-border rounded-3xl hover:border-primary/50 hover:shadow-2xl hover:shadow-[0_0_30px_rgba(20,184,166,0.4)] dark:hover:shadow-[0_0_30px_rgba(20,184,166,0.6)] transition-all duration-300"
             >
               <CardContent className="p-4 flex flex-col items-start justify-center gap-3">
-                <div className="w-full h-32 bg-[#14b8a6] rounded-2xl flex items-center justify-center">
-                  <tech.icon className="w-16 h-16 text-[#001219]" />
+                {/* Cuadro del ícono con gradiente */}
+                <div className="w-full h-32 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
+                  <tech.icon className="w-16 h-16 text-primary-foreground" />
                 </div>
-                <p className="font-extrabold text-[#f0fdfa]">{tech.name}</p>
-                <p className="text-sm text-[#94a3b8]">{tech.category}</p>
+                <p className="font-extrabold text-foreground">{tech.name}</p>
+                <p className="text-sm text-muted-foreground">{tech.category}</p>
               </CardContent>
             </Card>
           ))}

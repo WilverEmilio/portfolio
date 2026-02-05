@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,10 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-32 text-center">
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-32 text-center bg-background">
       <div className="max-w-3xl mx-auto">
+        
+        {/* Foto de perfil con badge */}
         <div className="mb-8 relative">
           <div className="w-44 h-44 mx-auto rounded-full overflow-hidden ring-4 ring-primary/20 ring-offset-4 ring-offset-background">
             <Image
@@ -23,48 +25,60 @@ export function HeroSection() {
               priority
             />
           </div>
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-primary rounded-full">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-primary rounded-full shadow-lg">
             <span className="text-xs font-semibold text-primary-foreground">
               {t("hero.available")}
             </span>
           </div>
         </div>
+
+        {/* Nombre */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mt-6 mb-3 text-balance">
           Wilver Emilio Xiá Ixcot
         </h1>
-        <h2 className="text-xl md:text-2xl text-primary font-medium mb-4">
+
+        {/* Título profesional */}
+        <h2 className="text-xl md:text-2xl text-accent font-medium mb-4">
           {t("hero.title")}
         </h2>
+
+        {/* Ubicación */}
         <div className="flex items-center justify-center gap-2 text-muted-foreground mb-6">
           <MapPin className="w-4 h-4" />
           <span>{t("hero.location")}</span>
         </div>
+
+        {/* Descripción */}
         <p className="text-muted-foreground text-lg leading-relaxed max-w-xl mx-auto mb-8 text-pretty">
           {t("hero.description")}
         </p>
+
+        {/* Iconos de redes sociales */}
         <div className="flex items-center justify-center gap-3 mb-10">
+          
+          {/* GitHub */}
           <Link
             href="https://github.com/WilverEmilio"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-5 rounded-full backdrop-blur-lg border border-white/10 
-                      bg-gradient-to-tr from-black/60 to-black/40 
-                      shadow-lg hover:shadow-2xl hover:shadow-white/20 
-                      hover:scale-110 hover:rotate-3 
-                      active:scale-95 active:rotate-0 
-                      transition-all duration-300 ease-out cursor-pointer 
-                      hover:border-white/30 
-                      hover:bg-gradient-to-tr hover:from-white/10 hover:to-black/40 
+            className="p-5 rounded-full backdrop-blur-lg border border-border
+                      bg-card
+                      shadow-lg hover:shadow-2xl hover:shadow-primary/20
+                      hover:scale-110 hover:rotate-3
+                      active:scale-95 active:rotate-0
+                      transition-all duration-300 ease-out cursor-pointer
+                      hover:border-primary/50
+                      hover:bg-primary/10
                       group relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent 
-                            -translate-x-full group-hover:translate-x-full 
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent
+                            -translate-x-full group-hover:translate-x-full
                             transition-transform duration-700 ease-out" />
             <div className="relative z-10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                className="w-7 h-7 fill-current text-white group-hover:text-white/90 transition-colors duration-300"
+                className="w-7 h-7 fill-current text-foreground group-hover:text-primary transition-colors duration-300"
               >
                 <path d="M12 0.296c-6.63 0-12 5.373-12 12 
                         0 5.303 3.438 9.8 8.205 11.387 
@@ -95,59 +109,58 @@ export function HeroSection() {
             </div>
           </Link>
 
+          {/* LinkedIn */}
           <Link
             href="https://www.linkedin.com/in/wilver-emilio-xiá-ixcot-6aa7662b4/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
-            className="p-5 rounded-full backdrop-blur-lg border border-blue-500/30
-                      bg-gradient-to-tr from-black/60 to-black/40 
-                      shadow-lg hover:shadow-2xl hover:shadow-blue-500/30 
-                      hover:scale-110 hover:rotate-3 
-                      active:scale-95 active:rotate-0 
-                      transition-all duration-300 ease-out cursor-pointer 
-                      hover:border-blue-500/50 
-                      hover:bg-gradient-to-tr hover:from-blue-500/15 hover:to-black/40 
+            className="p-5 rounded-full backdrop-blur-lg border border-border
+                      bg-card
+                      shadow-lg hover:shadow-2xl hover:shadow-[#0a66c2]/30
+                      hover:scale-110 hover:rotate-3
+                      active:scale-95 active:rotate-0
+                      transition-all duration-300 ease-out cursor-pointer
+                      hover:border-[#0a66c2]/50
+                      hover:bg-[#0a66c2]/10
                       group relative overflow-hidden"
           >
-            {/* Efecto barrido */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent 
-                            -translate-x-full group-hover:translate-x-full 
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0a66c2]/20 to-transparent
+                            -translate-x-full group-hover:translate-x-full
                             transition-transform duration-700 ease-out" />
-
-            {/* Icono LinkedIn */}
             <div className="relative z-10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                className="w-7 h-7 fill-current text-white group-hover:text-blue-500/90 transition-colors duration-300"
+                className="w-7 h-7 fill-current text-foreground group-hover:text-[#0a66c2] transition-colors duration-300"
               >
                 <path d="M22.23 0H1.77C.79 0 0 .774 0 1.727v20.545C0 23.227.79 24 1.77 24h20.46C23.21 24 24 23.227 24 22.273V1.727C24 .774 23.21 0 22.23 0zM7.09 20.452H3.56V9h3.53v11.452zM5.325 7.433c-1.13 0-2.048-.916-2.048-2.045 0-1.13.918-2.045 2.048-2.045 1.13 0 2.048.916 2.048 2.045 0 1.129-.918 2.045-2.048 2.045zM20.452 20.452h-3.53v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.447-2.136 2.94v5.666h-3.53V9h3.389v1.561h.047c.472-.9 1.624-1.852 3.341-1.852 3.572 0 4.231 2.351 4.231 5.411v6.332z"/>
               </svg>
             </div>
           </Link>
 
+          {/* Email */}
           <Link
             href="mailto:ixcotwilver@gmail.com"
             aria-label="Send email"
-            className="p-5 rounded-full backdrop-blur-lg border border-white/10 
-                      bg-gradient-to-tr from-black/60 to-black/40 
-                      shadow-lg hover:shadow-2xl hover:shadow-white/20 
-                      hover:scale-110 hover:rotate-3 
-                      active:scale-95 active:rotate-0 
-                      transition-all duration-300 ease-out cursor-pointer 
-                      hover:border-white/30 
-                      hover:bg-gradient-to-tr hover:from-white/10 hover:to-black/40 
+            className="p-5 rounded-full backdrop-blur-lg border border-border
+                      bg-card
+                      shadow-lg hover:shadow-2xl hover:shadow-primary/20
+                      hover:scale-110 hover:rotate-3
+                      active:scale-95 active:rotate-0
+                      transition-all duration-300 ease-out cursor-pointer
+                      hover:border-primary/50
+                      hover:bg-primary/10
                       group relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent 
-                            -translate-x-full group-hover:translate-x-full 
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent
+                            -translate-x-full group-hover:translate-x-full
                             transition-transform duration-700 ease-out" />
             <div className="relative z-10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                className="w-7 h-7 fill-current text-white group-hover:text-white/90 transition-colors duration-300"
+                className="w-7 h-7 fill-current text-foreground group-hover:text-primary transition-colors duration-300"
               >
                 <path d="M20 4H4C2.897 4 2 4.897 2 6v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 5.333-8-5.333V6h16zM4 18V9.489l7.445 4.964a1 1 0 0 0 1.11 0L20 9.489V18H4z"/>
               </svg>
