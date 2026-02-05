@@ -158,11 +158,11 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button asChild  size="lg" className="min-w-[160px]">
+          <Button asChild variant='contact' size="lg" className="min-w-[160px]">
             <a href="#contact">{t("hero.contact")}</a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="min-w-[160px] bg-transparent">
-            <a href="/resume.pdf" download>
+          <Button asChild variant="download" size="lg" className="min-w-[160px]">
+            <a href="/cv-wilver.pdf" download>
               {t("hero.downloadCV")}
             </a>
           </Button>
