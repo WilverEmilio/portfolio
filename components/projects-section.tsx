@@ -10,22 +10,25 @@ export function ProjectsSection() {
 
   const projects = [
     {
-      title: t("projects.project1.title"),
-      description: t("projects.project1.description"),
-      skills: ["Terraform", "Python", "AWS", "Docker"],
-      image: "/projects/infra-platform.jpg",
+      badge: "🎓 Proyecto Universitario",
+      title: "Sistema de Gestión Municipal",
+      description: "Backend de sistema municipal con APIs REST, gestión de bases de datos relacionales y procesamiento de datos geoespaciales para la Municipalidad de Palestina De Los Altos.",
+      skills: ["Node.js", "FastAPI", "PostgreSQL", "MySQL", "APIs REST", "Datos Geoespaciales"],
+      image: "/projects/municipalidad.jpg",
       githubUrl: "#",
       liveUrl: "#",
     },
     {
-      title: t("projects.project2.title"),
-      description: t("projects.project2.description"),
-      skills: ["Kubernetes", "Prometheus", "Grafana", "Go"],
-      image: "/projects/k8s-monitoring.jpg",
+      badge: "💼 Proyecto Full Stack",
+      title: "Sistema de Comercio Electrónico",
+      description: "Aplicación completa de e-commerce con frontend moderno en React/Next.js, integración de Strapi como CMS y procesamiento de pagos con Stripe.",
+      skills: ["React", "Next.js", "TypeScript", "Strapi", "Stripe", "APIs REST"],
+      image: "/projects/ecommerce.jpg",
       githubUrl: "#",
       liveUrl: "#",
     },
     {
+      badge: "💡 Proyecto Personal",
       title: t("projects.project3.title"),
       description: t("projects.project3.description"),
       skills: ["TypeScript", "GitHub Actions", "GitLab CI", "Node.js"],
@@ -33,6 +36,7 @@ export function ProjectsSection() {
       githubUrl: "#",
     },
     {
+      badge: "💡 Proyecto Personal",
       title: t("projects.project4.title"),
       description: t("projects.project4.description"),
       skills: ["Elasticsearch", "Logstash", "Kibana", "Redis"],
@@ -42,12 +46,20 @@ export function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-sm font-medium uppercase tracking-widest text-primary mb-12 text-center">
-          {t("projects.title")}
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
+    <section id="projects" className="py-24 px-6 bg-[#001219]">
+      <div className="max-w-6xl mx-auto">
+        {/* Título de la sección */}
+        <div className="text-center mb-14">
+          <h2 className="text-sm font-medium uppercase tracking-widest text-[#5eead4] mb-4">
+            {t("projects.title")}
+          </h2>
+          <p className="text-[#94a3b8] max-w-2xl mx-auto text-lg">
+            Proyectos destacados que demuestran mis habilidades en desarrollo full stack
+          </p>
+        </div>
+
+        {/* Grid de proyectos */}
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
@@ -58,6 +70,7 @@ export function ProjectsSection() {
 }
 
 function ProjectCard({
+  badge,
   title,
   description,
   skills,
@@ -65,6 +78,7 @@ function ProjectCard({
   githubUrl,
   liveUrl,
 }: {
+  badge?: string;
   title: string;
   description: string;
   skills: string[];
@@ -73,58 +87,76 @@ function ProjectCard({
   liveUrl?: string;
 }) {
   return (
-    <div className="group rounded-xl bg-card/50 border border-border hover:border-primary/30 transition-all overflow-hidden">
+    <div className="group relative rounded-2xl bg-[#0a1929] border border-[#14b8a6]/20 hover:border-[#14b8a6]/50 transition-all duration-300 overflow-hidden hover:shadow-[0_0_30px_rgba(20,184,166,0.3)] hover:-translate-y-2">
+      
+      {/* Badge superior */}
+      {badge && (
+        <div className="absolute top-4 left-4 z-10">
+          <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#14b8a6] text-[#001219] shadow-lg">
+            {badge}
+          </span>
+        </div>
+      )}
+
+      {/* Imagen */}
       <div className="relative aspect-video w-full overflow-hidden">
         <Image
           src={image || "/placeholder.svg"}
           alt={`Preview of ${title}`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-foreground">
-            {title}
-          </h3>
-          <div className="flex items-center gap-3">
-            {githubUrl && (
-              <Link
-                href={githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-background/80 backdrop-blur text-foreground hover:text-primary transition-colors"
-                aria-label={`View ${title} on GitHub`}
-              >
-                <Github className="w-4 h-4" />
-              </Link>
-            )}
-            {liveUrl && (
-              <Link
-                href={liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-background/80 backdrop-blur text-foreground hover:text-primary transition-colors"
-                aria-label={`View ${title} live`}
-              >
-                <ExternalLink className="w-4 h-4" />
-              </Link>
-            )}
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1929] via-transparent to-transparent opacity-60" />
       </div>
-      <div className="p-5">
-        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+
+      {/* Contenido */}
+      <div className="p-6">
+        {/* Título */}
+        <h3 className="text-xl font-bold text-[#f0fdfa] mb-3 group-hover:text-[#5eead4] transition-colors">
+          {title}
+        </h3>
+
+        {/* Descripción */}
+        <p className="text-[#94a3b8] text-sm leading-relaxed mb-4 line-clamp-3">
           {description}
         </p>
-        <div className="flex flex-wrap gap-2 mt-4">
+
+        {/* Skills */}
+        <div className="flex flex-wrap gap-2 mb-5">
           {skills.map((skill) => (
             <span
               key={skill}
-              className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary"
+              className="text-xs font-medium px-3 py-1 rounded-full bg-[#14b8a6]/10 text-[#14b8a6] border border-[#14b8a6]/30"
             >
               {skill}
             </span>
           ))}
+        </div>
+
+        {/* Botones */}
+        <div className="flex items-center gap-3">
+          {githubUrl && (
+            <Link
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#001219] border border-[#14b8a6]/30 text-[#14b8a6] hover:bg-[#14b8a6] hover:text-white transition-all text-sm font-medium"
+            >
+              <Github className="w-4 h-4" />
+              Código
+            </Link>
+          )}
+          {liveUrl && (
+            <Link
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#14b8a6] text-white hover:bg-[#0d9488] transition-all text-sm font-medium"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Ver Demo
+            </Link>
+          )}
         </div>
       </div>
     </div>
