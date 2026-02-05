@@ -26,23 +26,34 @@ const translations = {
     "hero.available": "Available for work",
     "hero.title": "Systems Engineer",
     "hero.location": "Quetzaltenango, Guatemala",
-    "hero.description": "I'm passionate about creating complete digital products, from the interface to the server logic. I work with React, Next.js, and Tailwind CSS on the frontend, and FastAPI and Node.js on the backend to build modern and scalable applications.",
+    "hero.description": "I'm passionate about creating complete digital products, from the interface to the server logic. I work with React and Tailwind CSS on the frontend, and FastAPI and Node.js on the backend to build modern and scalable applications.",
     "hero.contact": "Contact Me",
     "hero.downloadCV": "Download CV",
     
     // About
     "about.title": "About Me",
-    "about.p1": "I'm a Systems Engineer passionate about building reliable, scalable infrastructure. My work focuses on creating systems that are not only performant but also maintainable and secure.",
-    "about.p2.1": "Currently, I specialize in",
-    "about.p2.cloud": "cloud infrastructure",
-    "about.p2.container": "container orchestration",
+
+    "about.p1": "I am a Systems Engineering student and Full Stack Developer, with experience in web application development and software project management.",
+
+    "about.p2.intro": "I mainly work with modern technologies such as",
+    "about.p2.react": "React",
+    "about.p2.fastapi": "FastAPI",
+    "about.p2.node": "Node.js",
     "about.p2.and": "and",
-    "about.p2.cicd": "CI/CD pipeline development",
-    "about.p2.2": "I've had the opportunity to work across various environments—from",
-    "about.p2.startups": "startups",
-    "about.p2.to": "to",
-    "about.p2.enterprise": "enterprise organizations",
-    "about.p3": "When I'm not optimizing systems, I enjoy contributing to open-source projects, learning new technologies, and sharing knowledge with the community.",
+    "about.p2.typescript": "TypeScript",
+    "about.p2.outro": ", building efficient, scalable, and maintainable solutions.",
+
+    "about.p3": "I have participated in real-world projects for public institutions and e-commerce platforms, strengthening skills such as teamwork, organization, and problem-solving.",
+
+    "about.p4": "I enjoy continuous learning, applying best development practices, and collaborating with teams and clients to create solutions that deliver real value.",
+
+    "about.p5.intro": "My Christian principles positively influence my",
+    "about.p5.ethic": "work ethic",
+    "about.p5.and1": ",",
+    "about.p5.commitment": "commitment",
+    "about.p5.and2": "and",
+    "about.p5.responsibility": "responsibility",
+    "about.p5.outro": ", values that I apply in every project and professional collaboration.",
     
     // Technologies
     "tech.title": "Technologies",
@@ -92,23 +103,35 @@ const translations = {
     "hero.available": "Disponible para trabajar",
     "hero.title": "Ingeniero de Sistemas",
     "hero.location": "Quetzaltenango, Guatemala",
-    "hero.description": "Me apasiona crear productos digitales completos, desde la interfaz hasta la lógica del servidor. Trabajo con React, Next.js, TailwindCSS en frontend, y FastAPI y Node.js en backend para construir aplicaciones modernas y escalables.",
+    "hero.description": "Desarrollo soluciones web completas, cuidando tanto la experiencia del usuario como la lógica del servidor. Utilizo React y TailwindCSS en frontend, junto con FastAPI y Node.js en backend, para construir aplicaciones modernas, eficientes y escalables.",
     "hero.contact": "Contactame",
     "hero.downloadCV": "Descargar CV",
     
     // About
-    "about.title": "Sobre Mi",
-    "about.p1": "Soy un Ingeniero de Sistemas apasionado por construir infraestructura confiable y escalable. Mi trabajo se enfoca en crear sistemas que no solo sean eficientes sino tambien mantenibles y seguros.",
-    "about.p2.1": "Actualmente, me especializo en",
-    "about.p2.cloud": "infraestructura cloud",
-    "about.p2.container": "orquestacion de contenedores",
+    "about.title": "Sobre mí",
+
+    "about.p1": "Soy estudiante de Ingeniería en Sistemas y desarrollador Full Stack, con experiencia en el desarrollo de aplicaciones web y la gestión de proyectos de software.",
+
+    "about.p2.intro": "Trabajo principalmente con tecnologías modernas como",
+    "about.p2.react": "React",
+    "about.p2.fastapi": "FastAPI",
+    "about.p2.node": "Node.js",
     "about.p2.and": "y",
-    "about.p2.cicd": "desarrollo de pipelines CI/CD",
-    "about.p2.2": "He tenido la oportunidad de trabajar en diversos entornos—desde",
-    "about.p2.startups": "startups",
-    "about.p2.to": "hasta",
-    "about.p2.enterprise": "organizaciones empresariales",
-    "about.p3": "Cuando no estoy optimizando sistemas, disfruto contribuyendo a proyectos open-source, aprendiendo nuevas tecnologias y compartiendo conocimiento con la comunidad.",
+    "about.p2.typescript": "TypeScript",
+    "about.p2.outro": ", creando soluciones eficientes, escalables y mantenibles.",
+
+    "about.p3": "He participado en proyectos reales para instituciones públicas y plataformas de comercio electrónico, fortaleciendo habilidades como el trabajo en equipo, la organización y la resolución de problemas.",
+
+    "about.p4": "Me gusta aprender constantemente, aplicar buenas prácticas de desarrollo y colaborar con equipos y clientes para crear soluciones que aporten valor real.",
+   
+    "about.p5.intro": "Mis principios cristianos influyen positivamente en mi",
+    "about.p5.ethic": "ética de trabajo",
+    "about.p5.and1": ",",
+    "about.p5.commitment": "compromiso",
+    "about.p5.and2": "y",
+    "about.p5.responsibility": "responsabilidad",
+    "about.p5.outro": ", valores que aplico en cada proyecto y colaboración profesional.",
+
     
     // Technologies
     "tech.title": "Tecnologias",
