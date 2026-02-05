@@ -1,37 +1,43 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Cloud,
-  Container,
-  Database,
-  GitBranch,
-  Monitor,
-  Server,
-  Settings,
-  Terminal,
-} from "lucide-react";
+import { 
+  SiReact, 
+  SiAstro,
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript, 
+  SiTypescript, 
+  SiNodedotjs, 
+  SiFastapi, 
+  SiMysql, 
+  SiGithub, 
+  SiStrapi, 
+  SiStripe,
+  SiPostgresql,
+  SiTailwindcss,
+
+} from "react-icons/si";
+import { Database } from "lucide-react"; // Para SQL Server
 import { useLanguage } from "@/components/language-provider";
 
 const technologies = [
-  { icon: Cloud, name: "AWS", category: "Cloud" },
-  { icon: Cloud, name: "Azure", category: "Cloud" },
-  { icon: Cloud, name: "Google Cloud", category: "Cloud" },
-  { icon: Container, name: "Docker", category: "Containers" },
-  { icon: Container, name: "Kubernetes", category: "Orchestration" },
-  { icon: Settings, name: "Terraform", category: "IaC" },
-  { icon: Settings, name: "Ansible", category: "Automation" },
-  { icon: GitBranch, name: "GitHub Actions", category: "CI/CD" },
-  { icon: GitBranch, name: "Jenkins", category: "CI/CD" },
-  { icon: Monitor, name: "Prometheus", category: "Monitoring" },
-  { icon: Monitor, name: "Grafana", category: "Observability" },
-  { icon: Database, name: "PostgreSQL", category: "Database" },
-  { icon: Database, name: "Redis", category: "Cache" },
-  { icon: Server, name: "Nginx", category: "Web Server" },
-  { icon: Terminal, name: "Python", category: "Scripting" },
-  { icon: Terminal, name: "Bash", category: "Shell" },
-  { icon: Terminal, name: "Go", category: "Programming" },
-  { icon: Server, name: "Linux", category: "OS" },
+  { icon: SiReact, name: "ReactJS", category: "Frontend" },
+  { icon: SiReact, name: "React Native", category: "Mobile" },
+  { icon: SiAstro, name: "Astro", category: "Frontend" },
+  { icon: SiHtml5, name: "HTML", category: "Markup" },
+  { icon: SiCss3, name: "CSS", category: "Styling" },
+  { icon: SiTailwindcss, name: "Tailwind CSS", category: "Styling" },
+  { icon: SiJavascript, name: "JavaScript", category: "Programming" },
+  { icon: SiTypescript, name: "TypeScript", category: "Programming" },
+  { icon: SiNodedotjs, name: "NodeJS", category: "Backend" },
+  { icon: SiFastapi, name: "FastAPI", category: "Backend" },
+  { icon: SiMysql, name: "MySQL", category: "Database" },
+  { icon: SiPostgresql, name: "PostgreSQL", category: "Database" },
+  { icon: Database, name: "SQL Server", category: "Database" }, 
+  { icon: SiGithub, name: "Git/GitHub", category: "Version Control" },
+  { icon: SiStrapi, name: "Strapi", category: "CMS" },
+  { icon: SiStripe, name: "Stripe", category: "Payments" },
 ];
 
 export function TechnologiesSection() {
@@ -39,6 +45,7 @@ export function TechnologiesSection() {
 
   return (
     <section id="technologies" className="py-24 px-6">
+      {/* Para el titulo y la descripción */}
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-sm font-medium uppercase tracking-widest text-primary mb-4">
@@ -49,22 +56,18 @@ export function TechnologiesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {technologies.map((tech, index) => (
             <Card
               key={index}
-              className="group border-border/50 hover:border-primary/40 bg-card/30 transition-all duration-300 hover:-translate-y-1"
+              className="group bg-[#0a1929] rounded-3xl hover:bg-[#001219] hover:shadow-2xl hover:shadow-[#14b8a6] transition-shadow duration-300"
             >
-              <CardContent className="p-4 flex flex-col items-center text-center">
-                <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                  <tech.icon className="w-5 h-5 text-primary" />
+              <CardContent className="p-4 flex flex-col items-start justify-center gap-3">
+                <div className="w-full h-32 bg-[#14b8a6] rounded-2xl flex items-center justify-center">
+                  <tech.icon className="w-16 h-16 text-[#001219]" />
                 </div>
-                <h3 className="font-medium text-foreground text-sm">
-                  {tech.name}
-                </h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {tech.category}
-                </p>
+                <p className="font-extrabold text-[#f0fdfa]">{tech.name}</p>
+                <p className="text-sm text-[#94a3b8]">{tech.category}</p>
               </CardContent>
             </Card>
           ))}
