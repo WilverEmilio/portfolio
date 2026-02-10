@@ -95,6 +95,35 @@ const translations = {
     "contact.description": "I'm currently open to new opportunities. Whether you have a question, want to discuss a project, or just want to say hi, feel free to reach out.",
     "contact.button": "Say Hello",
     "contact.footer": "Designed and developed by Wilver Ixcot",
+
+    //Form
+    "form.name": "Name",
+    "form.email": "Email",
+    "form.assunto": "Subject",
+    "form.message": "Message",
+    "form.submit": "Send Message",
+
+    "form.success": "Message sent successfully!",
+    "form.error": "There was an error sending your message. Please try again later.",
+
+    "form.success1": "✓ Message sent successfully!",
+    "form.send1": "Sending message...",
+    
+    "form.title1": "Another way to contact me",
+    "form.disponible": "Available for projects",
+    "form.application": "Follow me on my social media platforms",
+
+      "form.title2": "Location",
+      "form.location": "Quetzaltenango, Guatemala",
+      "form.title3": "Availability",
+
+      "form.label.name": "Your name",
+      "form.label.email": "Your email",
+      "form.label.subject": "How can I help you?",
+      "form.label.message": "Tell me more about your project or question",
+
+        "link.label": "Interested in working together?"
+
   },
   es: {
     // Navbar
@@ -103,7 +132,7 @@ const translations = {
     "nav.experience": "Experiencia",
     "nav.projects": "Proyectos",
     "nav.contact": "Contacto",
-    "nav.hireMe": "Contratame",
+    "nav.hireMe": "Contáctame",
     
     // Hero
     "hero.available": "Disponible para trabajar",
@@ -181,6 +210,34 @@ const translations = {
     "contact.description": "Actualmente estoy abierto a nuevas oportunidades. Si tienes una pregunta, quieres discutir un proyecto, o simplemente quieres saludar, no dudes en contactarme.",
     "contact.button": "Saludar",
     "contact.footer": "Diseñado y desarrollado por Wilver Ixcot",
+
+    //Form
+    "form.name": "Nombre",
+    "form.email": "Correo Electrónico",
+    "form.assunto": "Asunto",
+    "form.message": "Mensaje",
+    "form.submit": "Enviar mensaje",
+
+    "form.success": "¡Mensaje enviado con éxito!",
+    "form.error": "Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.",
+
+    "form.success1": "✓ ¡Mensaje enviado con éxito!",
+    "form.send1": "Enviando mensaje...",
+
+    "form.title1": "Otra forma de contactarme",
+    "form.disponible": "Disponible para proyectos",
+    "form.application": "Sigueme en mis redes sociales",
+
+    "form.title2": "Ubicación",
+    "form.location": "Quetzaltenango, Guatemala",
+    "form.title3": "Disponibilidad",
+
+    "form.label.name": "Tu nombre",
+    "form.label.email": "Tu correo electrónico",
+    "form.label.subject": "¿En qué puedo ayudarte?",
+    "form.label.message": "Cúentame más sobre tu proyecto o pregunta",
+
+    "link.label": "¿Interesado en trabajar juntos?"
   },
 };
 

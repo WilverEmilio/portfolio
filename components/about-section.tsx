@@ -76,12 +76,12 @@ export function AboutSection() {
         {/* Call to action opcional */}
         <div className="mt-12 text-center">
           <p className="text-muted-foreground text-sm">
-            ¿Interesado en trabajar juntos?{" "}
+            {t("link.label")}{" "}
             <a 
               href="#contact" 
               className="text-primary hover:text-accent transition-colors font-medium underline underline-offset-4"
             >
-              Contáctame
+              {t("nav.hireMe")}
             </a>
           </p>
         </div>
