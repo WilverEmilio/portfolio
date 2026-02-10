@@ -43,7 +43,7 @@ export function Navbar() {
           href="/"
           className="text-lg font-bold text-foreground hover:text-primary transition-colors"
         >
-          YN<span className="text-primary">.</span>
+          WXI<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop Navigation */}

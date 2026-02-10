@@ -94,7 +94,7 @@ const translations = {
     "contact.heading": "Let's Work Together",
     "contact.description": "I'm currently open to new opportunities. Whether you have a question, want to discuss a project, or just want to say hi, feel free to reach out.",
     "contact.button": "Say Hello",
-    "contact.footer": "Designed & Built with Next.js and Tailwind CSS",
+    "contact.footer": "Designed and developed by Wilver Ixcot",
   },
   es: {
     // Navbar
@@ -180,7 +180,7 @@ const translations = {
     "contact.heading": "Trabajemos Juntos",
     "contact.description": "Actualmente estoy abierto a nuevas oportunidades. Si tienes una pregunta, quieres discutir un proyecto, o simplemente quieres saludar, no dudes en contactarme.",
     "contact.button": "Saludar",
-    "contact.footer": "Disenado y Construido con Next.js y Tailwind CSS",
+    "contact.footer": "Diseñado y desarrollado por Wilver Ixcot",
   },
 };
 
