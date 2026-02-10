@@ -74,10 +74,16 @@ const translations = {
     
     // Projects
     "projects.title": "Featured Projects",
-    "projects.project1.title": "Infrastructure Automation Platform",
-    "projects.project1.description": "A comprehensive platform for automating infrastructure provisioning and management. Built with Terraform modules and custom Python tooling to streamline cloud deployments.",
-    "projects.project2.title": "Kubernetes Monitoring Stack",
-    "projects.project2.description": "Complete observability solution for Kubernetes clusters using Prometheus, Grafana, and custom exporters. Includes alerting rules and dashboards for comprehensive cluster visibility.",
+    "projects.description": "Featured projects that demonstrate my full stack development skills",
+
+    "projects.project1.title": "Municipal Geographic Information System",
+    "projects.project1.description": "Complete backend for GIS system developed with FastAPI and PostgreSQL+PostGIS",
+    "projects.project1.organization": "Municipality of Palestina De Los Altos",
+
+    "projects.project2.title": "Electronic Commerce System",
+    "projects.project2.description": "Complete e-commerce application with a modern frontend built on React/Next.js, Strapi CMS integration, and Stripe payment processing. Separate frontend/backend architecture with headless content management.",
+    "projects.project2.organization": "E-commerce Marta",
+
     "projects.project3.title": "CI/CD Pipeline Generator",
     "projects.project3.description": "CLI tool that generates optimized CI/CD pipelines based on project structure. Supports GitHub Actions, GitLab CI, and Jenkins with best practices baked in.",
     "projects.project4.title": "Log Aggregation Service",
@@ -152,10 +158,18 @@ const translations = {
     
     // Projects
     "projects.title": "Proyectos Destacados",
-    "projects.project1.title": "Plataforma de Automatizacion de Infraestructura",
-    "projects.project1.description": "Una plataforma integral para automatizar el aprovisionamiento y gestion de infraestructura. Construida con modulos de Terraform y herramientas personalizadas de Python.",
-    "projects.project2.title": "Stack de Monitoreo Kubernetes",
-    "projects.project2.description": "Solucion de observabilidad completa para clusters de Kubernetes usando Prometheus, Grafana y exportadores personalizados. Incluye reglas de alerta y dashboards.",
+    "projects.description": "Proyectos destacados que demuestran mis habilidades en desarrollo full stack",
+
+
+    "projects.project1.title": "Sistema de Información Geográfica Municipal",
+    "projects.project1.description": "Backend completo para sistema SIG desarrollado con FastAPI y PostgreSQL+PostGIS",
+    "projects.project1.organization": "Municipalidad de Palestina De Los Altos",
+
+
+    "projects.project2.title": "Sistema de Comercio Electrónico",
+    "projects.project2.description": "Aplicación completa de e-commerce con frontend moderno en React/Next.js, integración de Strapi como CMS y procesamiento de pagos con Stripe. Arquitectura separada frontend/backend con gestión de contenido headless.",
+    "projects.project2.organization": "Comercio Electrónico Marta",
+
     "projects.project3.title": "Generador de Pipelines CI/CD",
     "projects.project3.description": "Herramienta CLI que genera pipelines CI/CD optimizados basados en la estructura del proyecto. Soporta GitHub Actions, GitLab CI y Jenkins con mejores practicas.",
     "projects.project4.title": "Servicio de Agregacion de Logs",
