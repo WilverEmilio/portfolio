@@ -1,0 +1,61 @@
+---
+import { ArrowUp, ArrowUpRight, Download } from "lucide-react";
+import { useT, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const t = useT(Astro.props.locale);
+// Año del build; el script de abajo lo actualiza en el navegador para que nunca quede desfasado.
+const year = new Date().getFullYear();
+
+const profiles = [
+  { label: "GitHub", href: "https://github.com/WilverEmilio" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/wilver-emilio-xiá-ixcot-6aa7662b4/" },
+];
+const link = "inline-flex min-h-11 items-center gap-1.5 text-sm text-foreground underline-offset-4 hover:text-primary hover:underline";
+---
+
+<footer class="border-t border-border">
+  <div class="container-page py-12 md:py-14">
+    <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+      <div>
+        <p class="font-display text-2xl font-semibold tracking-tight text-foreground">Wilver Emilio Xiá Ixcot</p>
+        <p class="mt-1 text-muted-foreground">{t("hero.title")} · {t("hero.location")}</p>
+      </div>
+
+      <ul class="flex flex-wrap gap-x-6 gap-y-1">
+        {
+          profiles.map((p) => (
+            <li>
+              <a href={p.href} target="_blank" rel="noopener noreferrer" class={link}>
+                {p.label}
+                <ArrowUpRight className="size-3.5 text-muted-foreground" aria-hidden="true" />
+                <span class="sr-only">({t("projects.opensInNewTab")})</span>
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href="/cv-wilver.pdf" download class={link}>
+            <Download className="size-3.5 text-muted-foreground" aria-hidden="true" />
+            {t("hero.downloadCV")}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <p class="legend normal-case tracking-normal">
+        © <span data-year>{year}</span> Wilver Emilio Xiá Ixcot. {t("footer.rights")} · {t("footer.madeWith")}
+      </p>
+      <a href="#top" class="legend inline-flex min-h-11 items-center gap-1.5 hover:text-foreground">
+        {t("footer.backToTop")}
+        <ArrowUp className="size-3.5" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+  <script is:inline>
+    document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = String(new Date().getFullYear())));
+  </script>
+</footer>

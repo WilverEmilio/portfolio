@@ -7,7 +7,7 @@ export const es = {
     "meta.description": "Ingeniero de Sistemas especializado en infraestructura, arquitectura cloud y DevOps",
 
     // Navbar
-    "nav.about": "Sobre Mi",
+    "nav.about": "Sobre mí",
     "nav.tech": "Tech",
     "nav.experience": "Experiencia",
     "nav.projects": "Proyectos",
@@ -50,8 +50,8 @@ export const es = {
 
     
     // Technologies
-    "tech.title": "Tecnologias",
-    "tech.description": "Las herramientas y tecnologias que uso para construir y mantener sistemas de infraestructura escalables y confiables.",
+    "tech.title": "Tecnologías",
+    "tech.description": "Las herramientas y tecnologías que uso para construir y mantener sistemas de infraestructura escalables y confiables.",
     
     // Experience
     "exp.title": "Experiencia",
@@ -119,4 +119,41 @@ export const es = {
     "form.label.message": "Cúentame más sobre tu proyecto o pregunta",
 
     "link.label": "¿Interesado en trabajar juntos?",
+
+    // Rediseño "Plano"
+    "nav.menu": "Menú",
+    "nav.theme": "Cambiar tema",
+    "nav.primary": "Principal",
+    "hero.viewProjects": "Ver proyectos",
+    "hero.photoAlt": "Fotografía de Wilver Emilio Xiá Ixcot",
+    "hero.social": "Perfiles profesionales",
+    "tech.cat.frontend": "Frontend",
+    "tech.cat.languages": "Lenguajes",
+    "tech.cat.backend": "Backend",
+    "tech.cat.databases": "Bases de datos",
+    "tech.cat.mobile": "Móvil",
+    "tech.cat.cms": "CMS y pagos",
+    "tech.cat.tools": "Herramientas",
+    "projects.badge.featured": "Proyecto destacado",
+    "projects.badge.fullstack": "Proyecto full stack",
+    "projects.status.completed": "Completado",
+    "projects.status.inProgress": "En desarrollo",
+    "projects.meta.organization": "Organización",
+    "projects.meta.period": "Periodo",
+    "projects.meta.status": "Estado",
+    "projects.meta.stack": "Stack",
+    "projects.code": "Código",
+    "projects.demo": "Demo",
+    "projects.link.website": "Sitio web",
+    "projects.screenshotAlt": "Captura de",
+    "projects.opensInNewTab": "se abre en una pestaña nueva",
+    "form.error.name": "Escribe tu nombre.",
+    "form.error.emailMissing": "Escribe tu correo electrónico.",
+    "form.error.emailFormat": "Escribe un correo con el formato tu@ejemplo.com.",
+    "form.error.subject": "Escribe un asunto.",
+    "form.error.message": "Escribe tu mensaje.",
+    "form.errorPrefix": "Error",
+    "footer.rights": "Todos los derechos reservados.",
+    "footer.madeWith": "Hecho con Astro y Tailwind CSS",
+    "footer.backToTop": "Volver arriba",
 } as const satisfies Record<TranslationKey, string>;

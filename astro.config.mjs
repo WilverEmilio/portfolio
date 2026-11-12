@@ -28,6 +28,27 @@ export default defineConfig({
       subsets: ["latin"],
       fallbacks: ["sans-serif"],
     },
+    {
+      // Títulos: grotesca de periódico con carácter (OFL). Variable: un archivo para 500–700.
+      provider: fontProviders.google(),
+      name: "Schibsted Grotesk",
+      cssVariable: "--font-schibsted",
+      // Pesos usados en títulos: 500 (medium), 600 (semibold), 700 (bold).
+      weights: ["500 700"],
+      styles: ["normal"],
+      subsets: ["latin"],
+      fallbacks: ["sans-serif"],
+    },
+    {
+      // Etiquetas, metadatos y coordenadas (OFL). No se precarga: no es crítica.
+      provider: fontProviders.google(),
+      name: "Geist Mono",
+      cssVariable: "--font-geist-mono",
+      weights: [400],
+      styles: ["normal"],
+      subsets: ["latin"],
+      fallbacks: ["monospace"],
+    },
   ],
   vite: {
     plugins: [tailwindcss()],

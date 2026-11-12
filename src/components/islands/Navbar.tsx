@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Globe, Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { buttonVariants } from "@/lib/button-variants";
 import { cn } from "@/lib/utils";
 
 export interface NavbarProps {
   /** Idioma de la página actual ("en" | "es"). */
   locale: string;
-  /** Ruta de inicio del idioma actual (destino del logo). */
+  /** Ruta de inicio del idioma actual (destino de la marca). */
   homeHref: string;
   /** Ruta equivalente en el otro idioma ("/" ↔ "/es/"). */
   altHref: string;
@@ -16,157 +16,208 @@ export interface NavbarProps {
     tech: string;
     projects: string;
     contact: string;
-    hireMe: string;
     switchLanguage: string;
+    menu: string;
+    theme: string;
+    primary: string;
   };
 }
 
-/** Alterna la clase .dark en <html> y guarda la preferencia (mismo key "theme" que usaba next-themes). */
+const SECTION_IDS = ["about", "technologies", "projects", "contact"] as const;
+type SectionId = (typeof SECTION_IDS)[number];
+
+/** Alterna .dark en <html> y guarda la preferencia (misma clave "theme" que lee el script del <head>). */
 function toggleTheme() {
   const root = document.documentElement;
-  // Igual que disableTransitionOnChange de next-themes: evita transiciones a medias al cambiar de tema.
+  // Evita transiciones a medias durante el cambio de tema.
   const style = document.createElement("style");
   style.textContent = "*,*::before,*::after{transition:none!important}";
   document.head.appendChild(style);
-
   const dark = root.classList.toggle("dark");
   try {
     localStorage.setItem("theme", dark ? "dark" : "light");
   } catch {}
-
-  window.getComputedStyle(document.body); // fuerza el reflow antes de retirar el estilo
+  window.getComputedStyle(document.body);
   setTimeout(() => style.remove(), 1);
 }
 
-/** Iconos controlados por CSS: el HTML del servidor y el del cliente son idénticos. */
-function ThemeIcon() {
+/**
+ * Sección visible → enlace activo (scrollspy). Se usa IntersectionObserver porque
+ * scroll-target-group/:target-current solo existen en Chromium; el estado se expone con aria-current.
+ */
+function useActiveSection() {
+  const [active, setActive] = useState<SectionId | null>(null);
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const visible = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id);
+        // La última sección del documento que cruza la franja central es la activa.
+        const current = [...SECTION_IDS].reverse().find((id) => visible.has(id)) ?? null;
+        setActive(current);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+  return active;
+}
+
+function ThemeButton({ label }: { label: string }) {
   return (
-    <>
-      <Sun className="h-4 w-4 hidden dark:block" />
-      <Moon className="h-4 w-4 dark:hidden" />
-    </>
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-9 text-muted-foreground hover:text-foreground")}
+      aria-label={label}
+    >
+      {/* Iconos por CSS: el HTML del servidor y del cliente coinciden */}
+      <Sun className="hidden dark:block" aria-hidden="true" />
+      <Moon className="dark:hidden" aria-hidden="true" />
+    </button>
+  );
+}
+
+function LangLink({ locale, altHref, altLocale, label }: { locale: string; altHref: string; altLocale: string; label: string }) {
+  return (
+    <a
+      href={altHref}
+      hrefLang={altLocale}
+      className="inline-flex h-9 min-w-9 items-center justify-center rounded-md px-2 font-mono text-xs tracking-wider text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+    >
+      <span aria-hidden="true">{locale.toUpperCase()}</span>
+      <span className="sr-only" lang={altLocale}>
+        {label}
+      </span>
+    </a>
   );
 }
 
 export default function Navbar({ locale, homeHref, altHref, altLocale, labels }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const active = useActiveSection();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { href: "#about", label: labels.about },
-    { href: "#technologies", label: labels.tech },
-    { href: "#projects", label: labels.projects },
-    { href: "#contact", label: labels.contact },
-  ];
+  // El popover nativo gestiona Esc y el cierre al pulsar fuera; aquí solo se refleja su estado.
+  useEffect(() => {
+    const el = menuRef.current;
+    if (!el) return;
+    const onToggle = (e: Event) => setMenuOpen((e as ToggleEvent).newState === "open");
+    el.addEventListener("toggle", onToggle);
+    return () => el.removeEventListener("toggle", onToggle);
+  }, []);
 
-  const themeButton = (
-    <button
-      type="button"
-      onClick={toggleTheme}
-      className={buttonVariants({ variant: "outline", size: "icon" })}
-      aria-label="Toggle theme"
-    >
-      <ThemeIcon />
-    </button>
-  );
+  const closeMenu = () => {
+    try {
+      menuRef.current?.hidePopover();
+    } catch {}
+  };
+
+  const links: { id: SectionId; label: string }[] = [
+    { id: "about", label: labels.about },
+    { id: "technologies", label: labels.tech },
+    { id: "projects", label: labels.projects },
+  ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/90 backdrop-blur-lg border-b border-border/50 shadow-sm" : "bg-transparent"
-      }`}
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200",
+        isScrolled || menuOpen ? "border-border bg-background" : "border-transparent bg-transparent",
+      )}
     >
-      <nav className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href={homeHref} className="text-lg font-bold text-foreground hover:text-primary transition-colors">
-          WXI<span className="text-primary">.</span>
+      <div className="container-page flex h-16 items-center justify-between gap-6">
+        <a href={homeHref} className="inline-flex min-h-11 items-center whitespace-nowrap font-display text-[1.0625rem] font-semibold tracking-tight text-foreground">
+          Wilver Xiá
         </a>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <nav aria-label={labels.primary} className="hidden md:block">
+          <ul className="flex items-center gap-8">
+            {links.map((link) => {
+              const current = active === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    aria-current={current ? "true" : undefined}
+                    className={cn(
+                      "relative py-2 text-sm transition-colors",
+                      // Indicador que no depende solo del color: línea inferior
+                      "after:absolute after:inset-x-0 after:-bottom-px after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-200",
+                      current ? "text-foreground after:scale-x-100" : "text-muted-foreground hover:text-foreground",
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-        <div className="hidden md:flex items-center gap-2">
-          {/* Cambio de idioma: enlace a la página equivalente */}
+        <div className="flex items-center gap-1">
+          <LangLink locale={locale} altHref={altHref} altLocale={altLocale} label={labels.switchLanguage} />
+          <ThemeButton label={labels.theme} />
           <a
-            href={altHref}
-            hrefLang={altLocale}
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5 min-w-[70px] bg-transparent")}
+            href="#contact"
+            aria-current={active === "contact" ? "true" : undefined}
+            className={cn(buttonVariants({ size: "sm" }), "ml-2 hidden md:inline-flex")}
           >
-            <Globe className="h-4 w-4" aria-hidden="true" />
-            <span className="text-xs font-medium">{locale.toUpperCase()}</span>
-            <span className="sr-only" lang={altLocale}>{labels.switchLanguage}</span>
+            {labels.contact}
           </a>
 
-          {themeButton}
-
-          <a href="#contact" className={buttonVariants({ size: "sm" })}>
-            {labels.hireMe}
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 md:hidden">
-          <a
-            href={altHref}
-            hrefLang={altLocale}
-            className={buttonVariants({ variant: "outline", size: "icon" })}
-          >
-            <span className="text-xs font-medium">{locale.toUpperCase()}</span>
-            <span className="sr-only" lang={altLocale}>{labels.switchLanguage}</span>
-          </a>
-
-          {themeButton}
-
+          {/* Móvil: menú en popover nativo (Esc, clic fuera y capa superior sin JS propio) */}
           <button
             type="button"
-            className={buttonVariants({ variant: "ghost", size: "icon" })}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={isMobileMenuOpen}
+            popoverTarget="mobile-menu"
             aria-controls="mobile-menu"
+            aria-expanded={menuOpen}
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "ml-1 md:hidden")}
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            <span>{labels.menu}</span>
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div id="mobile-menu" className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border">
-          <ul className="px-6 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+      <div
+        id="mobile-menu"
+        ref={menuRef}
+        popover="auto"
+        className={cn(
+          "fixed inset-x-4 top-[4.5rem] bottom-auto m-0 h-auto w-auto rounded-lg border border-border bg-card p-2 text-foreground md:hidden",
+          "opacity-100 transition-[opacity,translate,display,overlay] duration-150 transition-discrete starting:-translate-y-1 starting:opacity-0",
+          "backdrop:bg-foreground/15",
+        )}
+      >
+        <nav aria-label={labels.primary}>
+          <ul className="flex flex-col">
+            {[...links, { id: "contact" as SectionId, label: labels.contact }].map((link) => (
+              <li key={link.id}>
                 <a
-                  href={link.href}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  href={`#${link.id}`}
+                  onClick={closeMenu}
+                  aria-current={active === link.id ? "true" : undefined}
+                  className="flex min-h-12 items-center justify-between rounded-md px-3 text-base text-foreground hover:bg-muted aria-[current=true]:text-primary"
                 >
                   {link.label}
+                  {active === link.id && <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />}
                 </a>
               </li>
             ))}
-            <li>
-              <a href="#contact" className={cn(buttonVariants(), "w-full")} onClick={() => setIsMobileMenuOpen(false)}>
-                {labels.hireMe}
-              </a>
-            </li>
           </ul>
-        </div>
-      )}
+        </nav>
+      </div>
     </header>
   );
 }

@@ -1,55 +1,49 @@
 ---
+import SectionHeading from "./SectionHeading.astro";
 import { useT, type Locale } from "@/i18n";
 
 interface Props {
   locale: Locale;
 }
 const t = useT(Astro.props.locale);
-const p = "text-muted-foreground text-base md:text-lg leading-relaxed";
+const em = "font-medium text-foreground";
 ---
 
-<section id="about" class="py-24 px-6 bg-background">
-  <div class="max-w-4xl mx-auto">
-    <!-- Header con título y línea decorativa -->
-    <div class="text-center mb-12">
-      <h2 class="text-sm font-medium uppercase tracking-widest text-accent mb-4">
-        {t("about.title")}
-      </h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
-    </div>
+<section id="about" tabindex="-1" aria-labelledby="about-title" class="py-16 md:py-24">
+  <div class="container-page">
+    <SectionHeading index="01" title={t("about.title")} headingId="about-title" />
 
-    <div class="space-y-6">
-      <p class={p}>{t("about.p1")}</p>
-
-      <p class={p}>
-        {t("about.p2.intro")}{" "}
-        <span class="text-primary font-semibold">{t("about.p2.react")}</span>,{" "}
-        <span class="text-primary font-semibold">{t("about.p2.typescript")}</span>,{" "}
-        <span class="text-primary font-semibold">{t("about.p2.node")}</span>{" "}
-        {t("about.p2.and")}{" "}
-        <span class="text-primary font-semibold">{t("about.p2.fastapi")}</span>{t("about.p2.outro")}
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+      <!-- Primer párrafo como entradilla -->
+      <p class="font-display text-[1.375rem] leading-snug font-medium text-foreground md:text-[1.625rem]">
+        {t("about.p1")}
       </p>
 
-      <p class={p}>{t("about.p3")}</p>
-
-      <p class={p}>{t("about.p4")}</p>
-
-      <p class={p}>
-        {t("about.p5.intro")}{" "}
-        <span class="text-accent font-semibold">{t("about.p5.ethic")}</span>{t("about.p5.and1")}{" "}
-        <span class="text-accent font-semibold">{t("about.p5.commitment")}</span>{" "}
-        {t("about.p5.and2")}{" "}
-        <span class="text-accent font-semibold">{t("about.p5.responsibility")}</span>{t("about.p5.outro")}
-      </p>
-    </div>
-
-    <div class="mt-12 text-center">
-      <p class="text-muted-foreground text-sm">
-        {t("link.label")}{" "}
-        <a href="#contact" class="text-primary hover:text-accent transition-colors font-medium underline underline-offset-4">
-          {t("nav.hireMe")}
-        </a>
-      </p>
+      <div class="space-y-5 text-muted-foreground">
+        <p>
+          {t("about.p2.intro")}{" "}
+          <span class={em}>{t("about.p2.react")}</span>,{" "}
+          <span class={em}>{t("about.p2.typescript")}</span>,{" "}
+          <span class={em}>{t("about.p2.node")}</span>{" "}
+          {t("about.p2.and")}{" "}
+          <span class={em}>{t("about.p2.fastapi")}</span>{t("about.p2.outro")}
+        </p>
+        <p>{t("about.p3")}</p>
+        <p>{t("about.p4")}</p>
+        <p>
+          {t("about.p5.intro")}{" "}
+          <span class={em}>{t("about.p5.ethic")}</span>{t("about.p5.and1")}{" "}
+          <span class={em}>{t("about.p5.commitment")}</span>{" "}
+          {t("about.p5.and2")}{" "}
+          <span class={em}>{t("about.p5.responsibility")}</span>{t("about.p5.outro")}
+        </p>
+        <p class="pt-3 text-sm">
+          {t("link.label")}{" "}
+          <a href="#contact" class="font-medium text-primary underline underline-offset-4 hover:no-underline">
+            {t("nav.hireMe")}
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </section>

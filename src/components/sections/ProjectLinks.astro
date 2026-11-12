@@ -1,0 +1,52 @@
+---
+import { ArrowUpRight, Github } from "lucide-react";
+import { buttonVariants } from "@/lib/button-variants";
+import { cn } from "@/lib/utils";
+import type { Project, ProjectLink } from "@/data/projects";
+import { useT, type Locale } from "@/i18n";
+
+interface Props {
+  project: Project;
+  locale: Locale;
+  class?: string;
+}
+const { project, locale, class: className } = Astro.props;
+const t = useT(locale);
+const label = (l: ProjectLink) => (typeof l.label === "string" ? l.label : t(l.label.key));
+const code = project.code ?? [];
+const demo = project.demo ?? [];
+// Con varios enlaces del mismo tipo se antepone el tipo ("Código: Frontend · Backend").
+const codePrefix = code.length > 1 ? t("projects.code") : null;
+const demoPrefix = demo.length > 1 ? t("projects.demo") : null;
+---
+
+{
+  (code.length > 0 || demo.length > 0) && (
+    <div class={cn("flex gap-3", codePrefix || demoPrefix ? "flex-col" : "flex-wrap items-center", className)}>
+      {demo.length > 0 && (
+        <div class="flex flex-wrap items-center gap-2">
+          {demoPrefix && <span class="legend mr-1">{demoPrefix}</span>}
+          {demo.map((l) => (
+            <a href={l.url} target="_blank" rel="noopener noreferrer" class={buttonVariants({ size: "sm" })}>
+              {label(l)}
+              <ArrowUpRight aria-hidden="true" />
+              <span class="sr-only">({t("projects.opensInNewTab")})</span>
+            </a>
+          ))}
+        </div>
+      )}
+      {code.length > 0 && (
+        <div class="flex flex-wrap items-center gap-2">
+          {codePrefix && <span class="legend mr-1">{codePrefix}</span>}
+          {code.map((l) => (
+            <a href={l.url} target="_blank" rel="noopener noreferrer" class={buttonVariants({ variant: "outline", size: "sm" })}>
+              <Github aria-hidden="true" />
+              {label(l)}
+              <span class="sr-only">({t("projects.opensInNewTab")})</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}

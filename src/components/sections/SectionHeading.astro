@@ -1,0 +1,32 @@
+---
+/**
+ * Encabezado común de sección (sistema "Plano"): índice tipo leyenda + línea fina + título.
+ * El slot opcional va a la derecha en escritorio (descripción corta de la sección).
+ */
+interface Props {
+  index: string;
+  title: string;
+  headingId: string;
+}
+const { index, title, headingId } = Astro.props;
+const hasAside = Astro.slots.has("default");
+---
+
+<div class="mb-12 md:mb-16">
+  <div class="flex items-center gap-4" aria-hidden="true">
+    <span class="legend text-foreground">{index}</span>
+    <span class="h-px flex-1 bg-border"></span>
+  </div>
+  <div class:list={["mt-6 grid gap-4", hasAside && "md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end md:gap-12"]}>
+    <h2 id={headingId} class="text-[clamp(2rem,1.4rem+2.4vw,3rem)] leading-[1.05] font-semibold tracking-[-0.02em] text-foreground">
+      {title}
+    </h2>
+    {
+      hasAside && (
+        <div class="max-w-[52ch] text-base leading-relaxed text-muted-foreground md:justify-self-end">
+          <slot />
+        </div>
+      )
+    }
+  </div>
+</div>

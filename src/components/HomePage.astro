@@ -7,6 +7,7 @@ import AboutSection from "@/components/sections/AboutSection.astro";
 import TechnologiesSection from "@/components/sections/TechnologiesSection.astro";
 import ProjectsSection from "@/components/sections/ProjectsSection.astro";
 import ContactSection from "@/components/sections/ContactSection.astro";
+import Footer from "@/components/sections/Footer.astro";
 import { homePath, useT, type Locale } from "@/i18n";
 
 interface Props {
@@ -18,26 +19,29 @@ const altLocale: Locale = locale === "en" ? "es" : "en";
 ---
 
 <BaseLayout locale={locale}>
-  <main class="min-h-screen bg-background">
-    <Navbar
-      client:load
-      locale={locale}
-      homeHref={homePath(locale)}
-      altHref={homePath(altLocale)}
-      altLocale={altLocale}
-      labels={{
-        about: t("nav.about"),
-        tech: t("nav.tech"),
-        projects: t("nav.projects"),
-        contact: t("nav.contact"),
-        hireMe: t("nav.hireMe"),
-        switchLanguage: t("nav.switchLanguage"),
-      }}
-    />
+  <Navbar
+    client:load
+    locale={locale}
+    homeHref={homePath(locale)}
+    altHref={homePath(altLocale)}
+    altLocale={altLocale}
+    labels={{
+      about: t("nav.about"),
+      tech: t("nav.tech"),
+      projects: t("nav.projects"),
+      contact: t("nav.contact"),
+      switchLanguage: t("nav.switchLanguage"),
+      menu: t("nav.menu"),
+      theme: t("nav.theme"),
+      primary: t("nav.primary"),
+    }}
+  />
+  <main id="top" class="min-h-screen">
     <HeroSection locale={locale} />
     <AboutSection locale={locale} />
     <TechnologiesSection locale={locale} />
     <ProjectsSection locale={locale} />
     <ContactSection locale={locale} />
   </main>
+  <Footer locale={locale} />
 </BaseLayout>
