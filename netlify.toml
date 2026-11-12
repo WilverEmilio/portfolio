@@ -1,0 +1,14 @@
+# Sitio estático generado por Astro (sin adapter ni funciones).
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  # .nvmrc fija Node 22; Astro 7.4 requiere >= 22.23.4 (Netlify instala la última 22.x).
+  NODE_VERSION = "22"
+
+# Caché larga para los recursos con hash generados por Astro.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,77 @@
+---
+// Migrada desde components/experience-section.tsx.
+// Decisión D5: se conserva pero NO se renderiza en ninguna página (igual que en el sitio Next).
+// Para mostrarla, importarla en src/components/HomePage.astro y añadir el enlace en la Navbar.
+import { ExternalLink } from "lucide-react";
+import { useT, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const t = useT(Astro.props.locale);
+
+const experiences = [
+  {
+    period: "2023 — Present",
+    title: t("exp.job1.title"),
+    company: t("exp.job1.company"),
+    companyUrl: "#",
+    description: t("exp.job1.description"),
+    skills: ["Kubernetes", "Terraform", "AWS", "GitOps", "Python"],
+  },
+  {
+    period: "2021 — 2023",
+    title: t("exp.job2.title"),
+    company: t("exp.job2.company"),
+    companyUrl: "#",
+    description: t("exp.job2.description"),
+    skills: ["Jenkins", "Docker", "Linux", "Ansible", "Azure"],
+  },
+  {
+    period: "2019 — 2021",
+    title: t("exp.job3.title"),
+    company: t("exp.job3.company"),
+    companyUrl: "#",
+    description: t("exp.job3.description"),
+    skills: ["Linux", "Bash", "Python", "Networking", "VMware"],
+  },
+];
+---
+
+<section id="experience" class="py-24 px-6">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-sm font-medium uppercase tracking-widest text-primary mb-12 text-center">
+      {t("exp.title")}
+    </h2>
+    <div class="space-y-10">
+      {
+        experiences.map((exp) => (
+          <div class="group p-6 rounded-xl bg-card/50 border border-border hover:border-primary/30 transition-all">
+            <span class="text-xs text-primary font-medium uppercase tracking-wider">{exp.period}</span>
+            <h3 class="text-lg font-semibold text-foreground mt-2 group-hover:text-primary transition-colors">
+              {exp.title} ·{" "}
+              <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:underline">
+                {exp.company}
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </h3>
+            <p class="text-muted-foreground mt-3 leading-relaxed">{exp.description}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {exp.skills.map((skill) => (
+                <span class="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12">
+      <!-- Nota: /resume.pdf no existe en public/ (ya era así en Next). El CV real es /cv-wilver.pdf. -->
+      <a href="/resume.pdf" class="inline-flex items-center gap-2 text-foreground font-medium hover:text-primary transition-colors group">
+        {t("exp.viewResume")}
+        <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+      </a>
+    </div>
+  </div>
+</section>

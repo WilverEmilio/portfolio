@@ -1,0 +1,43 @@
+---
+// Página completa para un idioma. La usan src/pages/index.astro (en) y src/pages/es/index.astro (es).
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Navbar from "@/components/islands/Navbar";
+import HeroSection from "@/components/sections/HeroSection.astro";
+import AboutSection from "@/components/sections/AboutSection.astro";
+import TechnologiesSection from "@/components/sections/TechnologiesSection.astro";
+import ProjectsSection from "@/components/sections/ProjectsSection.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
+import { homePath, useT, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useT(locale);
+const altLocale: Locale = locale === "en" ? "es" : "en";
+---
+
+<BaseLayout locale={locale}>
+  <main class="min-h-screen bg-background">
+    <Navbar
+      client:load
+      locale={locale}
+      homeHref={homePath(locale)}
+      altHref={homePath(altLocale)}
+      altLocale={altLocale}
+      labels={{
+        about: t("nav.about"),
+        tech: t("nav.tech"),
+        projects: t("nav.projects"),
+        contact: t("nav.contact"),
+        hireMe: t("nav.hireMe"),
+        switchLanguage: t("nav.switchLanguage"),
+      }}
+    />
+    <HeroSection locale={locale} />
+    <AboutSection locale={locale} />
+    <TechnologiesSection locale={locale} />
+    <ProjectsSection locale={locale} />
+    <ContactSection locale={locale} />
+  </main>
+</BaseLayout>
