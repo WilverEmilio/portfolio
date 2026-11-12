@@ -1,0 +1,56 @@
+---
+import { Font } from "astro:assets";
+import "@/styles/global.css";
+import { homePath, locales, t, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const title = t(locale, "meta.title");
+const description = t(locale, "meta.description");
+
+// Con `site` configurado en astro.config.mjs las URLs salen absolutas (lo que pide Google);
+// sin él quedan relativas a la raíz.
+const toUrl = (path: string) => (Astro.site ? new URL(path, Astro.site).href : path);
+const canonical = toUrl(homePath(locale));
+---
+
+<!doctype html>
+<html lang={locale} class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={toUrl(homePath(l))} />)}
+    <link rel="alternate" hreflang="x-default" href={toUrl(homePath("en"))} />
+    <link rel="icon" type="image/png" href="/w.png" />
+    <link rel="apple-touch-icon" href="/w.png" />
+
+    <!--
+      Tema antes del primer pintado (sustituye a next-themes):
+      - "light" / "dark" guardado en localStorage → se respeta.
+      - "system" (valor que podía dejar next-themes) → prefers-color-scheme.
+      - Sin preferencia → oscuro, igual que defaultTheme="dark" del sitio actual.
+    -->
+    <script is:inline>
+      (function () {
+        var dark = true;
+        try {
+          var saved = localStorage.getItem("theme");
+          if (saved === "light") dark = false;
+          else if (saved === "system") dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        } catch (e) {}
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
+
+    <Font cssVariable="--font-geist" preload />
+  </head>
+  <body class="font-sans antialiased">
+    <slot />
+  </body>
+</html>

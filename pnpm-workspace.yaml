@@ -1,0 +1,3 @@
+allowBuilds:
+  # Astro usa sharp para optimizar imágenes en el build (también en Netlify).
+  sharp: true

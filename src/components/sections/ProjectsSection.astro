@@ -1,0 +1,28 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { projects } from "@/data/projects";
+import { useT, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useT(locale);
+---
+
+<section id="projects" class="py-24 px-6 bg-background">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-sm font-medium uppercase tracking-widest text-accent mb-4">
+        {t("projects.title")}
+      </h2>
+      <p class="text-muted-foreground max-w-2xl mx-auto text-lg">
+        {t("projects.description")}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {projects.map((project) => <ProjectCard project={project} locale={locale} />)}
+    </div>
+  </div>
+</section>
